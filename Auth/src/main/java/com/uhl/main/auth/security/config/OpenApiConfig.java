@@ -33,7 +33,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 ),
                 @Server(
                         description = "PROD ENV",
-                        url = "https://firoze.vercel.app/"
+                        url = "https://uhl.erp.com"
                 )
         },
         security = {

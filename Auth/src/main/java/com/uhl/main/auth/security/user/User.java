@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class User implements UserDetails, Principal {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
     private String firstName;
     private String lastName;
     @Column(unique = true, nullable = false, updatable = false)
@@ -79,11 +79,11 @@ public class User implements UserDetails, Principal {
         return username;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
