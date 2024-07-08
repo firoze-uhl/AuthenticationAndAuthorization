@@ -6,6 +6,7 @@ import com.uhl.main.auth.security.user.RoleRepository;
 import com.uhl.main.auth.security.user.User;
 import com.uhl.main.auth.security.user.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +47,14 @@ public class AuthenticationService {
         String s = jwtService.generateToken(user);
         return new AuthenticationResponse(s);
 
+    }
+
+    public AuthenticationResponse authenticate(AuthenticationRequest authenticateRequest) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticateRequest.username(),
+                authenticateRequest.password()));
+        User user = userRepository.findByUsername(authenticateRequest.username()).orElseThrow();
+        String s = jwtService.generateToken(user);
+        return new AuthenticationResponse(s);
     }
 
     public AuthenticationResponse registerAdmin(RegistrationRequest registerRequest) {

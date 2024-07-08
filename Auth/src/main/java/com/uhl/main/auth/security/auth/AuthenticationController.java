@@ -22,6 +22,12 @@ public class AuthenticationController {
         return ResponseEntity.accepted().build();
     }
 
+    @PostMapping("/authenticate")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
+        return ResponseEntity.ok(authenticationService.authenticate(authenticationRequest));
+    }
+
     @PostMapping("/sUser")
     public ResponseEntity<?> create(@RequestBody RegistrationRequest sUserDTO) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
